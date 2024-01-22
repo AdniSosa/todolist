@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de la compra</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <% if (locals.viajeTareas) { %>
+        <h1>Travel Todolist</h1>
+        <h2>Nos vamos de viaje y ahora <span>¡a organizar!</span></h2>
+
+            
+      <% } else { %>
+        <h1>Travel Todolist</h1>
+        <h2>Nos vamos de viaje y ahora <span>¡a organizar!</span></h2>
+       
+      <% } %>
+
+    
+    <div id="tareas">
+        <form action="/submit" method="POST">
+            <label for="viaje"><span class="sr-only"></span></label><input type="text" id="input-tareas" name="viaje" >
+            <input type="submit" value="+" class="añadir">
+        </form>
+    </div> 
+
+    <div id="marcarCheck">
+
+      <a href="#" id="marcar" class="marcarLabel">Marcar todos</a>
+      <a href="#" id="desmarcar" class="desmarcarLabel">Desmarcar todos</a>
+    </div>
+
+    <div id="lista" name="f1">
+    
+    <% if (locals.viajeTareas) { %>
+        <ul>
+            <% viajeTareas.forEach(tarea => { %>
+                <li class="items"><input type="checkbox" value="realizada" id="checkbox" name="checkbox"><%= tarea %></li>
+             
+              <% }); %>
+              
+        </ul>
+        
+
+        <button type="submit" id="eliminar">Eliminar tarea(s)</button>
+            
+      <% } else { %>
+        
+        <p>Aquí verás tus tareas.</p>
+       
+      <% } %>
+
+      
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="index.js" charset="utf-8"></script>
+
+    
+
+</body>
+
+  <footer>
+    <% let date =  new Date().getFullYear(); %>
+  
+    <p>Copyright © <%= date %></p>
+
+  </footer>
+</html>
